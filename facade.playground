@@ -1,0 +1,68 @@
+class MovieTheaterFacade {
+    let soundSystem: SoundSystem
+    let screen: Screen
+    let projector: Projector
+    
+    init(soundSystem: SoundSystem, screen: Screen, projector: Projector) {
+        self.soundSystem = soundSystem
+        self.screen = screen
+        self.projector = projector
+    }
+    
+    func watch(movie: String) {
+        screen.on()
+        soundSystem.on()
+        projector.on()
+        projector.loadDisc(with: movie)
+    }
+    
+    func endMovie() {
+        soundSystem.off()
+        projector.off()
+        screen.off()
+    }
+}
+
+class SoundSystem {
+    func on() {
+        print("Turning ON Theater Sound System")
+    }
+    
+    func off() {
+        print("Turning OFF Theater Sound System")
+    }
+}
+
+class Screen {
+    func on() {
+        print("Turning ON Screen")
+    }
+    
+    func off() {
+        print("Turning OFF Screen")
+    }
+}
+
+class Projector {
+    func on() {
+        print("Turning ON Projector")
+    }
+    
+    func off() {
+        print("Turning OFF Projector")
+    }
+    
+    func loadDisc(with movie: String) {
+        print("Loading disc with movie \(movie)")
+    }
+}
+
+let soundSystem = SoundSystem()
+let screen = Screen()
+let projector = Projector()
+
+let movieTheater = MovieTheaterFacade(soundSystem: soundSystem, screen: screen, projector: projector)
+
+movieTheater.watch(movie: "Stranger Things")
+print("Stranger Things in Progress")
+movieTheater.endMovie()
